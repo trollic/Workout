@@ -13,6 +13,7 @@
 		12BD1E71259AB8640096274B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12BD1E70259AB8640096274B /* Preview Assets.xcassets */; };
 		12BD1E7B259AD9740096274B /* WorkoutCountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BD1E7A259AD9740096274B /* WorkoutCountDownView.swift */; };
 		12BD1E7E259AD9EF0096274B /* BreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BD1E7D259AD9EF0096274B /* BreakView.swift */; };
+		12BD1E83259ADD470096274B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BD1E82259ADD470096274B /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		12BD1E72259AB8640096274B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12BD1E7A259AD9740096274B /* WorkoutCountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCountDownView.swift; sourceTree = "<group>"; };
 		12BD1E7D259AD9EF0096274B /* BreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakView.swift; sourceTree = "<group>"; };
+		12BD1E82259ADD470096274B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				12BD1E6B259AB8620096274B /* SelectTimeView.swift */,
 				12BD1E7A259AD9740096274B /* WorkoutCountDownView.swift */,
 				12BD1E7D259AD9EF0096274B /* BreakView.swift */,
+				12BD1E82259ADD470096274B /* ContentView.swift */,
 				12BD1E6D259AB8640096274B /* Assets.xcassets */,
 				12BD1E72259AB8640096274B /* Info.plist */,
 				12BD1E6F259AB8640096274B /* Preview Content */,
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12BD1E6C259AB8620096274B /* SelectTimeView.swift in Sources */,
+				12BD1E83259ADD470096274B /* ContentView.swift in Sources */,
 				12BD1E6A259AB8620096274B /* WorkoutApp.swift in Sources */,
 				12BD1E7E259AD9EF0096274B /* BreakView.swift in Sources */,
 				12BD1E7B259AD9740096274B /* WorkoutCountDownView.swift in Sources */,

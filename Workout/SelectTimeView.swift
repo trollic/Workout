@@ -8,9 +8,24 @@
 import SwiftUI
 
 struct SelectTimeView: View {
+    @State private var excerises = ["Plank", "Side Plank", "Push ups", "Burpees", "Jumping Jacks", "V sit ups", "Sit ups"].shuffled()
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView{
+            VStack{
+                Text("Choose your workout duration")
+                ForEach(1 ..< 5) { number in
+                    Button(action: {
+                        // TODO: do something when button is tapped
+                        
+                        // TODO: Countdown based on number*10 duration
+                    }, label: {
+                        Text("\(number*10) minutes")
+                    })
+                    
+                }
+            }
+        }.navigationTitle("Tabata Workout App")
     }
 }
 
