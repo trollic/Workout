@@ -13,6 +13,7 @@ class Exercisies: ObservableObject {
 }
 
 struct WorkoutCountDownView: View {
+    @StateObject var viewRouter: ViewRouter
     @ObservedObject var arrayEx = Exercisies()
     @ObservedObject var totalMinutes = Counter()
     
@@ -31,6 +32,11 @@ struct WorkoutCountDownView: View {
                             self.timeRemaining -= 1
                         }
                         // TODO: Switch to other view once this Workout timer expires. i.e. to Break if total time is remaining or to back to SelectTimeView if complete
+                        else {
+                            viewRouter
+                                // at the moment only going to BreakView
+                                .currentPage = .page3
+                        }
                 
                 
                     }
@@ -44,6 +50,6 @@ struct WorkoutCountDownView: View {
 
 struct WorkoutCountDownView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutCountDownView()
+        WorkoutCountDownView(viewRouter: ViewRouter())
     }
 }

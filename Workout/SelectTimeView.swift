@@ -31,7 +31,7 @@ class Counter: ObservableObject {
 
 struct SelectTimeView: View {
     @ObservedObject var totalTime = Counter()
-//    @Binding var showSelf: Bool
+    @StateObject var viewRouter: ViewRouter
     
     var body: some View {
         NavigationView{
@@ -59,6 +59,6 @@ struct SelectTimeView: View {
 
 struct SelectTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectTimeView()
+        SelectTimeView(viewRouter: ViewRouter())
     }
 }

@@ -12,13 +12,13 @@ struct WorkoutApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SelectTimeView()
+            ParentView()
         }
     }
 }
 
 struct WorkoutApp_Previews: PreviewProvider {
     static var previews: some View {
-        SelectTimeView()
+        ParentView()
     }
 }
