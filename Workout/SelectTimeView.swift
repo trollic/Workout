@@ -20,6 +20,7 @@ struct SelectTimeView: View {
         NavigationView{
             VStack{
                 Text("Choose your workout duration")
+                    .font(.title)
                 Spacer()
                 ForEach(1 ..< 5) { number in
                     Button(action: {
@@ -29,7 +30,11 @@ struct SelectTimeView: View {
                         viewRouter.currentPage = .page2
                     }, label: {
                         Text("\(number*10) minutes")
+                            .padding()
+                            .foregroundColor(Color.white)
+                            .font(.title)
                     })
+                    .background(Color.green)
                     .padding()
                     
                 }
@@ -41,8 +46,10 @@ struct SelectTimeView: View {
 
 struct SelectTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectTimeView()
-            .environmentObject(ViewRouter())
-            .environmentObject(Counter())
+        Group {
+            SelectTimeView()
+                .environmentObject(ViewRouter())
+                .environmentObject(Counter())
+        }
     }
 }

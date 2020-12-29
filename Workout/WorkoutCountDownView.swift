@@ -21,41 +21,49 @@ struct WorkoutCountDownView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        NavigationView{
-            VStack{
-                // TODO: Connect dynamic variable to exercises  array in SelectTimeView
-                Text("Do \(arrayEx.excercises[0])!")
-                Spacer()
-                Text("\(timeRemaining) seconds left")
-                    .onReceive(timer) { _ in
-                        if self.timeRemaining > 0 {
-                            self.timeRemaining -= 1
-                        }
-                        // Once time is up, swtich to relevant new view
-                        else {
-                            if (totalMinutes.minutesDuration > 0) {
-                                // decrement
-                                totalMinutes.minutesDuration -= 1
-                                // go to break
-                                viewRouter
-                                    .currentPage = .page3
-                            } else { // if time is up, return to select time view
-                                totalMinutes.minutesDuration = 0
-                                viewRouter
-                                    .currentPage = .page1
-                                
+            ZStack{
+                Color.orange
+                    .edgesIgnoringSafeArea(.all)
+                VStack{
+                    // TODO: Connect dynamic variable to exercises  array in SelectTimeView
+                    Text("Do \(arrayEx.excercises[0])!")
+                        .font(.title)
+                    Spacer()
+                    Text("\(timeRemaining) seconds left")
+                        .font(.title)
+                        .onReceive(timer) { _ in
+                            if self.timeRemaining > 0 {
+                                self.timeRemaining -= 1
                             }
+                            // Once time is up, swtich to relevant new view
+                            else {
+                                if (totalMinutes.minutesDuration > 0) {
+                                    // decrement
+                                    totalMinutes.minutesDuration -= 1
+                                    // go to break
+                                    viewRouter
+                                        .currentPage = .page3
+                                } else { // if time is up, return to select time view
+                                    totalMinutes.minutesDuration = 0
+                                    viewRouter
+                                        .currentPage = .page1
+                                    
+                                }
 
+                            }
+                    
+                    
                         }
+                    Spacer()
+                    Text("\(totalMinutes.minutesDuration) sets left in Workout")
+                    
+                }
+                    
                 
-                
-                    }
 
-                Text("\(totalMinutes.minutesDuration) minutes left in Workout")
-                Spacer()
-            }
         
-        }.navigationTitle("Tabata Workout App")
+        }
+        
 
     }
 }
