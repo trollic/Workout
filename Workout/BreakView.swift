@@ -8,9 +8,26 @@
 import SwiftUI
 
 struct BreakView: View {
+    @State var timeRemaining = 10
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView{
+            VStack{
+                Text("Take a break!")
+                Spacer()
+                Text("\(timeRemaining) seconds left")
+                    .onReceive(timer) { _ in
+                        if self.timeRemaining > 0 {
+                            self.timeRemaining -= 1
+                        }
+                        // TODO: Switch to other view once Break timer expires
+                    }
+                Spacer()
+            }
+        }
+        .navigationTitle("Tabata Workout App")
+
     }
 }
 
