@@ -7,9 +7,32 @@
 
 import SwiftUI
 
-struct SelectTimeView: View {
-    @State private var excerises = ["Plank", "Side Plank", "Push ups", "Burpees", "Jumping Jacks", "V sit ups", "Sit ups"].shuffled()
+class Counter: ObservableObject {
+    @Published var minutesDuration: Int?
+}
+//struct ViewSwitch: View {
+//    @ObservedObject var totalTime = Counter()
+//    // TODO: do something using count to switch between views
+//    if (totalTime.minutesDuration != nil) {
+//        currentView = WorkoutCountDownView()
+//    }
+//    else {
+//        return SelectTimeView()
+//    }
+//    
+//    var body: some View {
+//        NavigationLink(
+//            destination: /*@START_MENU_TOKEN@*/Text("Destination")/*@END_MENU_TOKEN@*/,
+//            label: {
+//                /*@START_MENU_TOKEN@*/Text("Navigate")/*@END_MENU_TOKEN@*/
+//            })
+//    }
+//}
 
+struct SelectTimeView: View {
+    @ObservedObject var totalTime = Counter()
+//    @Binding var showSelf: Bool
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -18,7 +41,9 @@ struct SelectTimeView: View {
                 ForEach(1 ..< 5) { number in
                     Button(action: {
                         // TODO: do something when button is tapped
-                        
+                        totalTime.minutesDuration = number*10
+                        // TODO: switch to Workout CountDown view
+                        // self.showSelf = false
                         // TODO: Countdown based on number*10 duration
                     }, label: {
                         Text("\(number*10) minutes")

@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct WorkoutApp: App {
+
     var body: some Scene {
         WindowGroup {
             SelectTimeView()
@@ -18,6 +19,6 @@ struct WorkoutApp: App {
 
 struct WorkoutApp_Previews: PreviewProvider {
     static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+        SelectTimeView()
     }
 }

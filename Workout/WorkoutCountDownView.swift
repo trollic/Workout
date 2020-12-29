@@ -7,15 +7,23 @@
 
 import SwiftUI
 
+class Exercisies: ObservableObject {
+    @Published var excercises = ["Plank", "Side Plank", "Push ups", "Burpees", "Jumping Jacks", "V sit ups", "Sit ups"].shuffled()
+
+}
+
 struct WorkoutCountDownView: View {
+    @ObservedObject var arrayEx = Exercisies()
+    @ObservedObject var totalMinutes = Counter()
+    
     @State var timeRemaining = 50
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         NavigationView{
             VStack{
-                // TODO: Connect to exercises array in SelectTimeView
-                Text("Do XYZ Workout!")
+                // TODO: Connect dynamic variable to exercises  array in SelectTimeView
+                Text("Do \(arrayEx.excercises[0])!")
                 Spacer()
                 Text("\(timeRemaining) seconds left")
                     .onReceive(timer) { _ in
@@ -23,11 +31,13 @@ struct WorkoutCountDownView: View {
                             self.timeRemaining -= 1
                         }
                         // TODO: Switch to other view once this Workout timer expires. i.e. to Break if total time is remaining or to back to SelectTimeView if complete
+                
+                
                     }
                 Spacer()
             }
-        }
-        .navigationTitle("Tabata Workout App")
+        
+        }.navigationTitle("Tabata Workout App")
 
     }
 }
