@@ -14,6 +14,7 @@ struct SelectTimeView: View {
         NavigationView{
             VStack{
                 Text("Choose your workout duration")
+                Spacer()
                 ForEach(1 ..< 5) { number in
                     Button(action: {
                         // TODO: do something when button is tapped
@@ -22,8 +23,10 @@ struct SelectTimeView: View {
                     }, label: {
                         Text("\(number*10) minutes")
                     })
+                    .padding()
                     
                 }
+                Spacer()
             }
         }.navigationTitle("Tabata Workout App")
     }
