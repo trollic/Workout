@@ -8,24 +8,27 @@
 import SwiftUI
 
 struct ParentView: View {
-    @EnvironmentObject var viewRouter : ViewRouter
+    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var totalTime: Counter
 
     var body: some View {
         switch
             viewRouter.currentPage
             {
         case .page1:
-            SelectTimeView(viewRouter: viewRouter)
+            SelectTimeView()
         case .page2:
-            WorkoutCountDownView(viewRouter: viewRouter)
+            WorkoutCountDownView()
         case .page3:
-            BreakView(viewRouter: viewRouter)
+            BreakView()
         }
     }
 }
 
 struct ParentView_Previews: PreviewProvider {
     static var previews: some View {
-        ParentView().environmentObject(ViewRouter())
+        ParentView()
+            .environmentObject(ViewRouter())
+            .environmentObject(Counter())
     }
 }

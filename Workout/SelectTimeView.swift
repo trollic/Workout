@@ -8,30 +8,13 @@
 import SwiftUI
 
 class Counter: ObservableObject {
-    @Published var minutesDuration: Int?
+    @Published var minutesDuration: Int = 0
 }
-//struct ViewSwitch: View {
-//    @ObservedObject var totalTime = Counter()
-//    // TODO: do something using count to switch between views
-//    if (totalTime.minutesDuration != nil) {
-//        currentView = WorkoutCountDownView()
-//    }
-//    else {
-//        return SelectTimeView()
-//    }
-//    
-//    var body: some View {
-//        NavigationLink(
-//            destination: /*@START_MENU_TOKEN@*/Text("Destination")/*@END_MENU_TOKEN@*/,
-//            label: {
-//                /*@START_MENU_TOKEN@*/Text("Navigate")/*@END_MENU_TOKEN@*/
-//            })
-//    }
-//}
+
 
 struct SelectTimeView: View {
-    @ObservedObject var totalTime = Counter()
-    @StateObject var viewRouter: ViewRouter
+    @EnvironmentObject var totalTime: Counter
+    @EnvironmentObject var viewRouter: ViewRouter
     
     var body: some View {
         NavigationView{
@@ -40,11 +23,10 @@ struct SelectTimeView: View {
                 Spacer()
                 ForEach(1 ..< 5) { number in
                     Button(action: {
-                        // TODO: do something when button is tapped
-                        totalTime.minutesDuration = number*10
-                        // TODO: switch to Workout CountDown view
-                        // self.showSelf = false
-                        // TODO: Countdown based on number*10 duration
+                        // Set total time minutes duration
+                        totalTime.minutesDuration = (number*10)
+                        // Switch to Workout CountDown view
+                        viewRouter.currentPage = .page2
                     }, label: {
                         Text("\(number*10) minutes")
                     })
@@ -59,6 +41,8 @@ struct SelectTimeView: View {
 
 struct SelectTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectTimeView(viewRouter: ViewRouter())
+        SelectTimeView()
+            .environmentObject(ViewRouter())
+            .environmentObject(Counter())
     }
 }

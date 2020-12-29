@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct BreakView: View {
-    @StateObject var viewRouter: ViewRouter
-    @State var timeRemaining = 10
+    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var totalMinutes: Counter
+    @State var timeRemaining = 15
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
@@ -22,11 +23,11 @@ struct BreakView: View {
                         if self.timeRemaining > 0 {
                             self.timeRemaining -= 1
                         }
-                        // TODO: Switch to other view once Break timer expires
-                        else { // at the moment going back to workout page
+                        else { // Switch View back to workout page
                             viewRouter.currentPage = .page2
                         }
                     }
+                Text("\(totalMinutes.minutesDuration) minutes left in Workout")
                 Spacer()
             }
         }
@@ -37,7 +38,9 @@ struct BreakView: View {
 
 struct BreakView_Previews: PreviewProvider {
     static var previews: some View {
-        BreakView(viewRouter: ViewRouter())
+        BreakView()
+            .environmentObject(ViewRouter())
+            .environmentObject(Counter())
     }
 }
 

@@ -13,11 +13,11 @@ class Exercisies: ObservableObject {
 }
 
 struct WorkoutCountDownView: View {
-    @StateObject var viewRouter: ViewRouter
+    @EnvironmentObject var viewRouter: ViewRouter
     @ObservedObject var arrayEx = Exercisies()
-    @ObservedObject var totalMinutes = Counter()
+    @EnvironmentObject var totalMinutes: Counter
     
-    @State var timeRemaining = 50
+    @State var timeRemaining = 45
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
@@ -31,15 +31,27 @@ struct WorkoutCountDownView: View {
                         if self.timeRemaining > 0 {
                             self.timeRemaining -= 1
                         }
-                        // TODO: Switch to other view once this Workout timer expires. i.e. to Break if total time is remaining or to back to SelectTimeView if complete
+                        // Once time is up, swtich to relevant new view
                         else {
-                            viewRouter
-                                // at the moment only going to BreakView
-                                .currentPage = .page3
+                            if (totalMinutes.minutesDuration > 0) {
+                                // decrement
+                                totalMinutes.minutesDuration -= 1
+                                // go to break
+                                viewRouter
+                                    .currentPage = .page3
+                            } else { // if time is up, return to select time view
+                                totalMinutes.minutesDuration = 0
+                                viewRouter
+                                    .currentPage = .page1
+                                
+                            }
+
                         }
                 
                 
                     }
+
+                Text("\(totalMinutes.minutesDuration) minutes left in Workout")
                 Spacer()
             }
         
@@ -50,6 +62,8 @@ struct WorkoutCountDownView: View {
 
 struct WorkoutCountDownView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutCountDownView(viewRouter: ViewRouter())
+        WorkoutCountDownView()
+            .environmentObject(ViewRouter())
+            .environmentObject(Counter())
     }
 }
